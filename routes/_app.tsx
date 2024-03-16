@@ -10,7 +10,11 @@ export default function App({ Component }: PageProps) {
         <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
       </head>
       <body>
-        <Component />
+        <div class="px-4 mx-auto min-h-screen bg-base-300">
+          <div class="container min-h-screen mx-auto bg-base-100 flex flex-col justify-between">
+            <Component />
+          </div>
+        </div>
       </body>
     </html>
   );

@@ -1,14 +1,20 @@
-import { AppHeader } from "../components/AppHeader.tsx";
+import { defineRoute, FreshContext } from "$fresh/server.ts";
+import { AppHeaderProps } from "../components/AppHeader.tsx";
 import Recoder from "../islands/Recoder.tsx";
 
-export default function Home() {
+export const handler = {
+  GET: async (req: any, ctx: FreshContext<AppHeaderProps>) => {
+    ctx.state.showRecordingShortCut = false;
+    return await ctx.render();
+  },
+};
+
+export default defineRoute(() => {
   return (
-    <div class="px-4 py-8 mx-auto bg-[#86efac]">
-      <div class="max-w-screen-md mx-auto flex flex-col items-center justify-center">
-        <AppHeader showRecordingShortCut={false} />
+    <>
+      <div class="px-2 pt-4">
+        <Recoder />
       </div>
-      recording
-      <Recoder />
-    </div>
+    </>
   );
-}
+});

@@ -1,12 +1,17 @@
-import { AppHeader } from "../components/AppHeader.tsx";
+import { defineRoute } from "$fresh/server.ts";
+import HeroHome from "../components/HeroHome.tsx";
+import RecentRecordings from "../islands/RecentRecordings.tsx";
 
-export default function Home() {
+export default defineRoute((_req, _ctx) => {
   return (
-    <div class="px-4 py-8 mx-auto bg-[#86efac]">
-      <div class="max-w-screen-md mx-auto flex flex-col items-center justify-center">
-        <AppHeader />
+    <>
+      <div class="px-2 pt-4">
+        <HeroHome />
       </div>
-      home
-    </div>
+      <div className="divider"></div>
+      <div class="px-4">
+        <RecentRecordings />
+      </div>
+    </>
   );
-}
+});

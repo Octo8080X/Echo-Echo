@@ -12,6 +12,6 @@ export default {
     },
   ],
   daisyui: {
-    themes: ["winter"],
+    themes: ["winter", "autumn"],
   },
 } satisfies Config;

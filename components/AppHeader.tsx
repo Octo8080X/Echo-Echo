@@ -1,16 +1,14 @@
 import { JSX } from "preact";
-import { IS_BROWSER } from "$fresh/runtime.ts";
 
-interface AppHeaderProps extends JSX.HTMLAttributes<HTMLButtonElement> {
+export interface AppHeaderProps extends JSX.HTMLAttributes<HTMLButtonElement> {
   showRecordingShortCut?: boolean;
-  showHomeLinkShortCut?: boolean;
 }
 
 export function AppHeader(props: AppHeaderProps) {
   const showRecordingShortCut = props.showRecordingShortCut ?? true;
 
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-base-content text-base-100">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -31,31 +29,39 @@ export function AppHeader(props: AppHeaderProps) {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 text-base-content"
           >
             <li>
-              <a href="/search">Search</a>
+              <a href="/search" class="">Search</a>
             </li>
             <li>
-              <a href="/play/random">Random Play</a>
+              <a class="opacity-50">
+                <div class="tooltip tooltip-right" data-tip="coming soon">
+                  Random Play
+                </div>
+              </a>
             </li>
             <li>
-              <a href="/conditions">conditions</a>
+              <a href="/conditions" class="">conditions</a>
             </li>
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl" href="/home">daisyUI</a>
+        <a class="btn btn-ghost text-xl" href="/home">Echo-Echo</a>
       </div>
-      <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
+      <div class="navbar-center hidden lg:flex">
+        <ul class="menu menu-horizontal px-1">
           <li>
-            <a href="/search">Search</a>
+            <a href="/search" class="link">Search</a>
           </li>
           <li>
-            <a href="/play/random">Random Play</a>
+            <a class="link opacity-50">
+              <div className="tooltip tooltip-bottom" data-tip="coming soon">
+                Random Play
+              </div>
+            </a>
           </li>
           <li>
-            <a href="/conditions">conditions</a>
+            <a href="/conditions" class="link">conditions</a>
           </li>
         </ul>
       </div>

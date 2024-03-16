@@ -1,9 +1,16 @@
-export default function Home() {
+import { RouteConfig } from "$fresh/server.ts";
+import HeroIndex from "../components/HeroIndex.tsx";
+
+export const config: RouteConfig = {
+  skipInheritedLayouts: true,
+};
+
+export default function Index() {
   return (
-    <div class="px-4 py-8 mx-auto bg-[#86efac]">
-      <div class="max-w-screen-md mx-auto flex flex-col items-center justify-center">
-        <a href="/home">Home</a>
+    <>
+      <div class="container mx-auto">
+        <HeroIndex />
       </div>
-    </div>
+    </>
   );
 }

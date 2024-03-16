@@ -33,7 +33,8 @@
     "daisy-ui": "npm:daisyui@latest",
     "$hono/": "https://deno.land/x/hono@v4.0.10/",
     "@hono/zod-openapi": "npm:@hono/zod-openapi",
-    "@hono/swagger-ui": "npm:@hono/swagger-ui"
+    "@hono/swagger-ui": "npm:@hono/swagger-ui",
+    "randomcolor": "npm:randomcolor"
   },
   "compilerOptions": {
     "jsx": "react-jsx",
