@@ -16,5 +16,6 @@ export function getFormatTime(src: Date) {
 // 引数で与えられた数字の日数分の前の年月日YYYY-MM-DD形式で返す
 export function getBeforeDate(date: Date, days: number) {
   date.setDate(date.getDate() - days);
-  return date.toISOString().split("T")[0];
+  console.log("date: ", date.getTime())
+  return getFormatTime(date);
 }

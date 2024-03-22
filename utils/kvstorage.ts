@@ -35,6 +35,7 @@ export async function saveRecord(
 ): Promise<{ id: string }> {
   const splitArray = splitUint8Array(file);
   const date = new Date();
+  console.log("date: ", date);
   const id = ulid(date.getTime());
   const createdAt = getFormatTime(date);
 
@@ -190,9 +191,10 @@ export async function deleteByDate(date: string): Promise<void> {
   }
 
   for (const key of deleteKeys) {
+    console.info("delete key: ", key);
     const atomic = kv.atomic();
-    const entries = kv.list({ prefix: [RECODING_DATA_KEY, key[2]] });
-    for (const entry of entries) {
+    const entries = await kv.list({ prefix: [RECODING_DATA_KEY, key[2]] });
+    for await (const entry of entries) {
       atomic.delete(entry.key);
     }
     atomic.delete([RECODING_INFO_KEY, key[2]]);
