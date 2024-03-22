@@ -12,7 +12,7 @@ import manifest from "./fresh.gen.ts";
 import config from "./fresh.config.ts";
 import { deleteData } from "./tasks/delete_task.ts";
 
-Deno.cron("Delete Task", "0 1 * * *", () => {
+Deno.cron("Delete Task", "0 0 * * *", () => {
   deleteData();
 });
 
