@@ -50,7 +50,7 @@ export function AppFooter() {
           class="link link-hover"
           target="_brank"
           rel="noopener"
-          href="https://github.com/Octo8080X/EchoEcho"        
+          href="https://github.com/Octo8080X/EchoEcho"
         >
           Octo8080X/EchoEcho
         </a>
