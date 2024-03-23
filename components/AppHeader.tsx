@@ -61,7 +61,7 @@ export function AppHeader(props: AppHeaderProps) {
             </a>
           </li>
           <li>
-            <a href="/conditions" class="link">conditions</a>
+            <a href="/conditions" class="link">Conditions</a>
           </li>
         </ul>
       </div>
