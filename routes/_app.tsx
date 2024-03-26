@@ -5,6 +5,11 @@ export default function App({ Component }: PageProps) {
       <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@unique1jp" />
+        <meta name="twitter:title" content="Echo-Echo" />
+        <meta name="twitter:description" content="`Echo-Echo` is a short sound registration service!" />
+        <meta name="twitter:image" content="https://echo-echo.deno.dev/images/og_image.jpg" />
         <title>EchoEcho</title>
         <link rel="stylesheet" href="/styles.css" />
         <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
