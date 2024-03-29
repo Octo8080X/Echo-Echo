@@ -3,7 +3,7 @@ import { AppHeaderProps } from "../components/AppHeader.tsx";
 import Recoder from "../islands/Recoder.tsx";
 
 export const handler = {
-  GET: async (req: any, ctx: FreshContext<AppHeaderProps>) => {
+  GET: async (_req: Request, ctx: FreshContext<AppHeaderProps>) => {
     ctx.state.showRecordingShortCut = false;
     return await ctx.render();
   },

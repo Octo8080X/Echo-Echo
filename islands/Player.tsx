@@ -1,11 +1,9 @@
 import { useEffect, useState } from "preact/hooks";
-import type {
-  GetRecordsDataType,
-  GetRecordsInfoRoute,
-} from "../utils/api_definition.ts";
-import { hc } from "$hono/mod.ts";
-const client = hc<GetRecordsDataType>("/");
-const infoClient = hc<GetRecordsInfoRoute>("/");
+import { hc } from "hono/client";
+import { AppRoutesType } from "../routes/api/[...path].ts";
+
+const client = hc<AppRoutesType>("/");
+
 export default function Player(props: { recodingId: string }) {
   const [blob, setBlob] = useState<Blob | null>(null);
   const [dataInfo, setDataInfo] = useState<{
@@ -22,12 +20,22 @@ export default function Player(props: { recodingId: string }) {
 
   useEffect(() => {
     const call = async () => {
-      const result = await client.api.records[props.recodingId].data.$get();
+      const result = await client.api.records[":id"].data.$get({
+        param: {
+          id: props.recodingId,
+        },
+      });
       const blob = await result.blob();
       setBlob(blob);
 
-      const infoResult = await infoClient.api.records[props.recodingId].info
-        .$get();
+      const infoResult = await client.api.records[":id"].info
+        .$get(
+          {
+            param: {
+              id: props.recodingId,
+            },
+          },
+        );
 
       if (!infoResult.ok) {
         return;

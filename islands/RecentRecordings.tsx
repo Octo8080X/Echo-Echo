@@ -2,9 +2,10 @@ import { IS_BROWSER } from "$fresh/runtime.ts";
 import { useState } from "preact/hooks";
 import { JSX } from "preact/jsx-runtime";
 import { useEffect } from "preact/hooks";
-import type { GetPlayRecentRecordingsAppType } from "../utils/api_definition.ts";
-import { hc } from "$hono/mod.ts";
-const client = hc<GetPlayRecentRecordingsAppType>("/");
+import { hc } from "hono/client";
+import { AppRoutesType } from "../routes/api/[...path].ts";
+const client = hc<AppRoutesType>("/");
+
 function getItem(
   title: string,
   url: string,

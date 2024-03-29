@@ -1,6 +1,6 @@
 import { FreshContext } from "$fresh/server.ts";
 
-import { Hono } from "$hono/mod.ts";
+import { Hono } from "hono";
 import { swaggerUI } from "@hono/swagger-ui";
 import { CONSTS } from "../utils/consts.ts";
 

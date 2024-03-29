@@ -32,7 +32,8 @@
     "tailwindcss/plugin": "npm:/tailwindcss@3.4.1/plugin.js",
     "$std/": "https://deno.land/std@0.211.0/",
     "daisy-ui": "npm:daisyui@latest",
-    "$hono/": "https://deno.land/x/hono@v4.0.10/",
+    "hono": "npm:hono",
+    "hono/client": "npm:hono/client",
     "@hono/zod-openapi": "npm:@hono/zod-openapi",
     "@hono/swagger-ui": "npm:@hono/swagger-ui",
     "randomcolor": "npm:randomcolor"

@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "preact/hooks";
-import type { PostRecordsType } from "../utils/api_definition.ts";
-import { hc } from "$hono/mod.ts";
+import { hc } from "hono/client";
+import { AppRoutesType } from "../routes/api/[...path].ts";
 
-const client = hc<PostRecordsType>("/");
+const client = hc<AppRoutesType>("/");
 declare const RecordRTCPromisesHandler: any;
 
 export default function Recoder() {

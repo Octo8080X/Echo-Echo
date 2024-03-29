@@ -16,49 +16,46 @@ import {
 } from "../../utils/api_definition.ts";
 import { CONSTS } from "../../utils/consts.ts";
 
-const app = new OpenAPIHono();
-
-// POST /api/recording
-app.openapi(postRecordsRoute, async (c) => {
-  const formData = await c.req.formData();
-  const blob = formData.get("file") as Blob;
-  const title = formData.get("title") as string;
-  const file = new Uint8Array(await blob.arrayBuffer());
-  const result = await saveRecord(title, file);
-  return c.json({ message: "OK", url: `/play/${result.id}` });
-});
-
-// GET /api/records/:id/data
-app.openapi(getRecordsDataRoute, async (c) => {
-  const id = c.req.param("id");
-  const arr = await getRecord(id);
-
-  return c.body(arr);
-});
-
-// GET /api/records/:id/info
-app.openapi(getRecordsInfoRoute, async (c) => {
-  const id = c.req.param("id");
-  const result = await getRecordInfos(id);
-
-  return c.json(result);
-});
-
-// GET /api/records/recent
 const MAX_RECENT_RECORDINGS = 12 as const;
 
-app.openapi(getRecordsRecentRoute, async (c) => {
-  const recordings = await getRecentRecords(MAX_RECENT_RECORDINGS);
+const app = new OpenAPIHono();
 
-  return c.json({ recordings });
-});
+const appRoutes = app
+  // POST /api/recording
+  .openapi(postRecordsRoute, async (c) => {
+    const formData = await c.req.formData();
+    const blob = formData.get("file") as Blob;
+    const title = formData.get("title") as string;
+    const file = new Uint8Array(await blob.arrayBuffer());
+    const result = await saveRecord(title, file);
+    return c.json({ message: "OK", url: `/play/${result.id}` });
+  })
+  // GET /api/records/:id/data
+  .openapi(getRecordsDataRoute, async (c) => {
+    const id = c.req.param("id");
+    const arr = await getRecord(id);
 
-// GET //api/records/search
-app.openapi(getRecordsSearchRoute, async (c) => {
-  const recordings = await searchRecords(c.req.query("q") || "");
+    return c.body(arr);
+  })
+  // GET /api/records/:id/info
+  .openapi(getRecordsInfoRoute, async (c) => {
+    const id = c.req.param("id");
+    const result = await getRecordInfos(id);
 
-  return c.json({ recordings });
-});
+    return c.json(result);
+  })
+  // GET /api/records/recent
+  .openapi(getRecordsRecentRoute, async (c) => {
+    const recordings = await getRecentRecords(MAX_RECENT_RECORDINGS);
+
+    return c.json({ recordings });
+  })
+  // GET //api/records/search
+  .openapi(getRecordsSearchRoute, async (c) => {
+    const recordings = await searchRecords(c.req.query("q") || "");
+
+    return c.json({ recordings });
+  });
 
 // OpenAPI Documentation for development
 if (
@@ -75,3 +72,5 @@ if (
 }
 
 export const handler: Handler = app.fetch;
+
+export type AppRoutesType = typeof appRoutes;

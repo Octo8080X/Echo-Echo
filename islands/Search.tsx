@@ -1,8 +1,7 @@
 import { useEffect, useState } from "preact/hooks";
-import type { GetRecordsSearchType } from "../utils/api_definition.ts";
-import { hc } from "$hono/mod.ts";
-
-const client = hc<GetRecordsSearchType>("/");
+import { hc } from "hono/client";
+import { AppRoutesType } from "../routes/api/[...path].ts";
+const client = hc<AppRoutesType>("/");
 
 export default function Search() {
   const [list, setList] = useState<
