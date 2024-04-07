@@ -6,7 +6,7 @@ export default function App({ Component }: PageProps) {
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@unique1jp" />
+        <meta name="twitter:site" content="@okutann88" />
         <meta name="twitter:title" content="Echo-Echo" />
         <meta
           name="twitter:description"
