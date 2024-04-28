@@ -1,7 +1,5 @@
 import { createOgp } from "./create_ogp.tsx";
 
-const kv = await Deno.openKv();
-
 interface OgpMessage {
   type: "createOgp";
   id: string;
@@ -14,6 +12,7 @@ function createOgpMessage(id: string) {
 }
 
 export async function callCreateOgp(id: string) {
+  const kv = await Deno.openKv();
   await kv.enqueue(createOgpMessage(id), { delay: 3000 });
 
   kv.listenQueue((msg: OgpMessage) => {
