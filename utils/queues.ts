@@ -15,10 +15,7 @@ function createOgpMessage(id: string) {
 
 export async function callCreateOgp(id: string) {
   await kv.enqueue(createOgpMessage(id), { delay: 3000 });
-}
 
-export function listenQueue() {
-  console.log("[START listenQueue]");
   kv.listenQueue((msg: OgpMessage) => {
     if (msg.type === "createOgp") {
       createOgp(msg.id);
