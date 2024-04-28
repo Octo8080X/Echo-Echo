@@ -77,6 +77,7 @@ export async function createOgp(id: string) {
             fontWeight: 100,
             fontStyle: "bold",
             color: "oklch(41.8869% 0.053885 255.824911 / 1)",
+            zIndex: 100,
           }}
         >
           {title}
