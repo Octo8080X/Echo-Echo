@@ -72,8 +72,6 @@ export async function saveRecord(
     throw new Error("Failed to save recording data");
   }
 
-  kv.close();
-
   return { id };
 }
 
@@ -94,8 +92,6 @@ export async function getRecord(id: string): Promise<Uint8Array> {
   for (let i = 0; i < splitArray.length; i++) {
     arr.set(splitArray[i], i * 1024 * 64);
   }
-
-  kv.close();
 
   return arr;
 }
@@ -123,7 +119,6 @@ export async function searchRecords(q: string): Promise<
       });
     }
   }
-  kv.close();
   return result;
 }
 
@@ -150,7 +145,6 @@ export async function getRecentRecords(
       break;
     }
   }
-  kv.close();
   return result;
 }
 
@@ -165,7 +159,6 @@ export async function getRecordInfos(id: string): Promise<{
     createdAt: string;
     colorCode: string;
   }>([RECODING_INFO_KEY, id]);
-  kv.close();
 
   if (!result || !result.value) {
     throw new Error("Recording not found");
@@ -181,7 +174,6 @@ export async function getRecordInfos(id: string): Promise<{
 export async function getRecordOgpImage(id: string): Promise<ArrayBuffer> {
   const kv = await Deno.openKv();
   const result = await kv.get<ArrayBuffer>([RECODING_OGP_IMAGE_KEY, id]);
-  kv.close();
 
   if (!result || !result.value) {
     throw new Error("Recording not found");
@@ -196,7 +188,6 @@ export async function setRecordOgpImage(
 ): Promise<boolean> {
   const kv = await Deno.openKv();
   const result = await kv.set([RECODING_OGP_IMAGE_KEY, id], img);
-  kv.close();
 
   return result.ok;
 }
@@ -226,6 +217,4 @@ export async function deleteByDate(date: string): Promise<void> {
     atomic.delete(key);
     await atomic.commit();
   }
-
-  kv.close();
 }
