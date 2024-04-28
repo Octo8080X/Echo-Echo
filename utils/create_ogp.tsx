@@ -30,8 +30,8 @@ export async function createOgp(id: string) {
     <div
       style={{
         backgroundColor: info.colorCode,
-        width: 1200,
-        height: 630,
+        width: 600,
+        height: 315,
         display: "flex",
       }}
     >
@@ -42,13 +42,13 @@ export async function createOgp(id: string) {
           height: 200,
           display: "flex",
           position: "absolute",
-          marginLeft: "50px",
-          marginTop: "10px",
+          marginLeft: "25px",
+          marginTop: "5px",
         }}
       >
         <p
           style={{
-            fontSize: "40px",
+            fontSize: "20px",
             fontFamily: "Bold Noto Sans JP",
             fontWeight: 100,
             fontStyle: "bold",
@@ -66,13 +66,13 @@ export async function createOgp(id: string) {
           height: 200,
           display: "flex",
           position: "absolute",
-          marginLeft: "200px",
-          marginTop: "200px",
+          marginLeft: "100px",
+          marginTop: "100px",
         }}
       >
         <p
           style={{
-            fontSize: "140px",
+            fontSize: "70px",
             fontFamily: "Bold Noto Sans JP",
             fontWeight: 100,
             fontStyle: "bold",
@@ -90,7 +90,7 @@ export async function createOgp(id: string) {
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          viewBox="-800 -230 1200 630"
+          viewBox="-200 -15 1200 630"
         >
           <path
             style={{
@@ -102,8 +102,8 @@ export async function createOgp(id: string) {
       </div>
     </div>,
     {
-      width: 1200,
-      height: 630,
+      width: 600,
+      height: 315,
       fonts: [
         {
           name: "Noto",

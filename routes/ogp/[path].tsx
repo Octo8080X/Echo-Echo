@@ -3,6 +3,7 @@ import { getRecordOgpImage } from "../../utils/kvstorage.ts";
 export const handler: Handlers = {
   async GET(_req, ctx) {
     try {
+      
       const img = await getRecordOgpImage(ctx.params.path);
       return new Response(img);
     } catch (e) {
