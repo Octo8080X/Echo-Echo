@@ -10,9 +10,12 @@ import { start } from "$fresh/server.ts";
 import manifest from "./fresh.gen.ts";
 import config from "./fresh.config.ts";
 import { deleteData } from "./tasks/delete_task.ts";
+import { listenQueue } from "./utils/queues.ts";
 
 Deno.cron("Delete Task", "0 0 * * *", () => {
   deleteData();
 });
+
+listenQueue();
 
 await start(manifest, config);

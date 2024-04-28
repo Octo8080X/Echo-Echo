@@ -5,6 +5,7 @@ import randomcolor from "randomcolor";
 
 const RECODING_DATA_KEY = "recording_data" as const;
 const RECODING_INFO_KEY = "recording_info" as const;
+const RECODING_OGP_IMAGE_KEY = "recording_ogp_image" as const;
 const RECODING_CREATED_AT_KEY = "recording_created_at" as const;
 
 function splitUint8Array(src: Uint8Array): Uint8Array[] {
@@ -177,6 +178,29 @@ export async function getRecordInfos(id: string): Promise<{
   };
 }
 
+export async function getRecordOgpImage(id: string): Promise<ArrayBuffer> {
+  const kv = await Deno.openKv();
+  const result = await kv.get<ArrayBuffer>([RECODING_OGP_IMAGE_KEY, id]);
+  kv.close();
+
+  if (!result || !result.value) {
+    throw new Error("Recording not found");
+  }
+
+  return result.value;
+}
+
+export async function setRecordOgpImage(
+  id: string,
+  img: Uint8Array,
+): Promise<boolean> {
+  const kv = await Deno.openKv();
+  const result = await kv.set([RECODING_OGP_IMAGE_KEY, id], img);
+  kv.close();
+
+  return result.ok;
+}
+
 export async function deleteByDate(date: string): Promise<void> {
   const kv = await Deno.openKv();
 
@@ -198,6 +222,7 @@ export async function deleteByDate(date: string): Promise<void> {
       atomic.delete(entry.key);
     }
     atomic.delete([RECODING_INFO_KEY, key[2]]);
+    atomic.delete([RECODING_OGP_IMAGE_KEY, key[2]]);
     atomic.delete(key);
     await atomic.commit();
   }

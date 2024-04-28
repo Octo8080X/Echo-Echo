@@ -15,6 +15,7 @@ import {
   postRecordsRoute,
 } from "../../utils/api_definition.ts";
 import { CONSTS } from "../../utils/consts.ts";
+import { callCreateOgp } from "../../utils/queues.ts";
 
 const MAX_RECENT_RECORDINGS = 12 as const;
 
@@ -28,6 +29,9 @@ const appRoutes = app
     const title = formData.get("title") as string;
     const file = new Uint8Array(await blob.arrayBuffer());
     const result = await saveRecord(title, file);
+
+    await callCreateOgp(result.id);
+
     return c.json({ message: "OK", url: `/play/${result.id}` });
   })
   // GET /api/records/:id/data

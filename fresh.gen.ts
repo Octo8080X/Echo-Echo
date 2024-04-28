@@ -10,6 +10,7 @@ import * as $api_path_ from "./routes/api/[...path].ts";
 import * as $conditions from "./routes/conditions.tsx";
 import * as $home from "./routes/home.tsx";
 import * as $index from "./routes/index.tsx";
+import * as $ogp_path_ from "./routes/ogp/[path].tsx";
 import * as $play_id_ from "./routes/play/[id].tsx";
 import * as $recording from "./routes/recording.tsx";
 import * as $search from "./routes/search.tsx";
@@ -29,6 +30,7 @@ const manifest = {
     "./routes/conditions.tsx": $conditions,
     "./routes/home.tsx": $home,
     "./routes/index.tsx": $index,
+    "./routes/ogp/[path].tsx": $ogp_path_,
     "./routes/play/[id].tsx": $play_id_,
     "./routes/recording.tsx": $recording,
     "./routes/search.tsx": $search,
